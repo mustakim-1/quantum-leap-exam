@@ -65,7 +65,7 @@ const LoginPage: React.FC = () => {
             <div className="flex items-center justify-center mb-4">
                 <img src="/image/Adobe Express - file.png" alt="SULPHURIC BENCH Logo" className="w-16 h-16 object-contain" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter">Welcome to SULPHURIC BENCH</h1>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter">Welcome to SULPHURIC BENCH EXAM</h1>
             <p className="text-lg text-[#778DA9] mt-2">The Future of Examination is Here.</p>
         </div>
         <Card>
