@@ -8,9 +8,9 @@ interface LeaderboardItemProps {
 
 const LeaderboardItem: React.FC<LeaderboardItemProps> = ({ entry, rank }) => {
     const rankColors: { [key: number]: string } = {
-        1: 'bg-yellow-500/20 border-yellow-400 text-yellow-300 shadow-[0_0_15px_rgba(250,204,21,0.5)]',
-        2: 'bg-gray-400/20 border-gray-300 text-gray-200 shadow-[0_0_15px_rgba(209,213,219,0.5)]',
-        3: 'bg-orange-600/20 border-orange-500 text-orange-400 shadow-[0_0_15px_rgba(234,88,12,0.5)]',
+        1: 'bg-[#778DA9]/20 border-[#A9BCD0] text-[#DDE6ED] shadow-[0_0_15px_rgba(169,188,208,0.5)]',
+        2: 'bg-[#415A77]/20 border-[#778DA9] text-[#E0E1DD] shadow-[0_0_15px_rgba(119,141,169,0.5)]',
+        3: 'bg-[#1B263B]/20 border-[#415A77] text-[#C9D6DE] shadow-[0_0_15px_rgba(27,38,59,0.5)]',
     };
     const rankClass = rankColors[rank] || 'bg-gray-800/50 border-gray-700';
 

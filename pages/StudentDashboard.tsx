@@ -48,7 +48,7 @@ const StudentDashboard: React.FC = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <div className="lg:col-span-2">
                             <Card>
-                                <h3 className="text-xl font-semibold mb-4 text-blue-400">Available Exams</h3>
+                                <h3 className="text-xl font-semibold mb-4 text-[#778DA9]">Available Exams</h3>
                                 <div className="space-y-4">
                                     {MOCK_EXAMS.map(exam => (
                                         <div key={exam.id} className="p-4 bg-gray-800/50 rounded-lg flex justify-between items-center">
@@ -64,7 +64,7 @@ const StudentDashboard: React.FC = () => {
                         </div>
                         <div>
                             <Card>
-                                <h3 className="text-xl font-semibold mb-4 text-blue-400">Past Results</h3>
+                                <h3 className="text-xl font-semibold mb-4 text-[#778DA9]">Past Results</h3>
                                 <div className="space-y-3">
                                     {userResults.length > 0 ? userResults.map(result => {
                                         const exam = MOCK_EXAMS.find(e => e.id === result.examId);

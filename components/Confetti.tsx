@@ -5,7 +5,7 @@ const ConfettiPiece: React.FC<{ id: number }> = ({ id }) => {
   const [style, setStyle] = useState({});
 
   useEffect(() => {
-    const colors = ['#007BFF', '#FFFFFF', '#34C759', '#FFD60A'];
+    const colors = ['#778DA9', '#E0E1DD', '#415A77', '#1B263B'];
     setStyle({
       left: `${Math.random() * 100}vw`,
       top: `${-10 - Math.random() * 20}px`,

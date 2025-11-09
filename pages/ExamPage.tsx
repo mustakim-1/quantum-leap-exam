@@ -27,7 +27,7 @@ const Timer: React.FC<{ seconds: number }> = ({ seconds }) => {
             strokeWidth="2"
           />
           <path
-            className="text-blue-500 transition-all duration-1000"
+            className="text-[#778DA9] transition-all duration-1000"
             strokeDasharray={`${progress}, 100`}
             d="M18 2.0845
               a 15.9155 15.9155 0 0 1 0 31.831

@@ -40,7 +40,7 @@ const LoginPage: React.FC = () => {
 
   const renderTextField = (id: string, label: string, type: string, value: string, setter: (val: string) => void, placeholder: string, required = true) => (
     <div>
-        <label htmlFor={id} className="block text-sm font-medium text-gray-300">
+        <label htmlFor={id} className="block text-sm font-medium text-[#778DA9]">
             {label}
         </label>
         <input
@@ -51,44 +51,28 @@ const LoginPage: React.FC = () => {
             required={required}
             value={value}
             onChange={(e) => setter(e.target.value)}
-            className="mt-1 block w-full bg-[#0D1117] border border-gray-600 rounded-md shadow-sm py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full bg-[#1B263B] border border-[#415A77] rounded-md shadow-sm py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#778DA9] focus:border-[#778DA9]"
             placeholder={placeholder}
         />
     </div>
   );
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 overflow-hidden relative">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-tr from-blue-900 via-gray-900 to-black animate-gradient-xy"></div>
-        <style>{`
-          @keyframes gradient-xy {
-            0%, 100% {
-              background-size: 400% 400%;
-              background-position: top right;
-            }
-            50% {
-              background-size: 400% 400%;
-              background-position: bottom left;
-            }
-          }
-          .animate-gradient-xy {
-            animation: gradient-xy 15s ease infinite;
-          }
-        `}</style>
-      </div>
+    <div className="min-h-screen flex items-center justify-center p-4 overflow-hidden relative bg-[#0D1B2A]">
 
       <div className="relative z-10 w-full max-w-md">
         <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter">Welcome to QuantumLeap</h1>
-            <p className="text-lg text-gray-400 mt-2">The Future of Examination is Here.</p>
+            <div className="flex items-center justify-center mb-4">
+                <img src="/image/Adobe Express - file.png" alt="SULPHURIC BENCH Logo" className="w-16 h-16 object-contain" />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter">Welcome to SULPHURIC BENCH</h1>
+            <p className="text-lg text-[#778DA9] mt-2">The Future of Examination is Here.</p>
         </div>
         <Card>
           <form onSubmit={handleSubmit} className="space-y-6">
             <h2 className="text-2xl font-semibold text-center text-white">{isRegister ? 'Create Your Account' : 'Login'}</h2>
             {!isRegister && (
-                 <p className="text-center text-gray-400 text-sm">
-                    Use <code className="bg-gray-700 p-1 rounded">student@example.com</code> (pw: student123) or <code className="bg-gray-700 p-1 rounded">admin@example.com</code> (pw: admin123).
+                 <p className="text-center text-[#778DA9] text-sm">
                 </p>
             )}
             
@@ -115,9 +99,9 @@ const LoginPage: React.FC = () => {
               {isRegister ? 'Register & Start' : 'Proceed'}
             </Button>
 
-            <p className="text-center text-sm text-gray-400">
+            <p className="text-center text-sm text-[#778DA9]">
               {isRegister ? 'Already have an account? ' : "Don't have an account? "}
-              <button type="button" onClick={toggleForm} className="font-medium text-blue-400 hover:text-blue-300">
+              <button type="button" onClick={toggleForm} className="font-medium text-[#778DA9] hover:text-white">
                 {isRegister ? 'Login' : 'Register'}
               </button>
             </p>

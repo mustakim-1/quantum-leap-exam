@@ -30,7 +30,7 @@ const ExamDetailsModal: React.FC<ExamDetailsModalProps> = ({ exam, onStart, onCl
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    <h2 className="text-3xl font-bold mb-2 text-blue-400">{exam.title}</h2>
+                    <h2 className="text-3xl font-bold mb-2 text-[#778DA9]">{exam.title}</h2>
                     <div className="text-gray-400 mb-6 flex flex-wrap items-center gap-x-4">
                         <span>{exam.questions.length} Questions</span>
                         <span className="text-gray-600">&bull;</span>
