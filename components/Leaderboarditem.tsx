@@ -18,7 +18,13 @@ const LeaderboardItem: React.FC<LeaderboardItemProps> = ({ entry, rank }) => {
         <div className={`flex items-center justify-between p-3 rounded-lg border-2 transition-all duration-300 ${rankClass}`}>
             <div className="flex items-center space-x-4">
                 <span className="font-bold text-lg w-6 text-center">{rank}</span>
-                <img src={entry.avatar} alt={entry.name} className="w-10 h-10 rounded-full"/>
+                {entry.avatar ? (
+                  <img src={entry.avatar} alt={entry.name} className="w-10 h-10 rounded-full object-cover"/>
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center">
+                    <span className="text-white font-semibold">{entry.name.charAt(0).toUpperCase()}</span>
+                  </div>
+                )}
                 <span className="font-medium">{entry.name}</span>
             </div>
             <div className="text-right">

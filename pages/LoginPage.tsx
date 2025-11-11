@@ -12,6 +12,7 @@ const LoginPage: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [school, setSchool] = useState('');
   const [grade, setGrade] = useState('');
+  const [avatarDataUrl, setAvatarDataUrl] = useState<string>('');
   const { login, register } = useAuth();
 
 
@@ -22,7 +23,7 @@ const LoginPage: React.FC = () => {
             alert("Passwords do not match.");
             return;
         }
-        register(name, email, password, school, grade);
+        register(name, email, password, school, grade, avatarDataUrl);
     } else {
         login(email, password);
     }
@@ -36,6 +37,7 @@ const LoginPage: React.FC = () => {
     setConfirmPassword('');
     setSchool('');
     setGrade('');
+    setAvatarDataUrl('');
   }
 
   const renderTextField = (id: string, label: string, type: string, value: string, setter: (val: string) => void, placeholder: string, required = true) => (
@@ -79,6 +81,35 @@ const LoginPage: React.FC = () => {
             {isRegister && (
               <>
                 {renderTextField("name", "Full Name", "text", name, setName, "Alex Johnson")}
+                {/* Avatar Upload */}
+                <div>
+                  <label htmlFor="avatar" className="block text-sm font-medium text-[#778DA9]">
+                    Profile Photo (optional)
+                  </label>
+                  <input
+                    id="avatar"
+                    name="avatar"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) { setAvatarDataUrl(''); return; }
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setAvatarDataUrl(reader.result as string);
+                      };
+                      reader.readAsDataURL(file);
+                    }}
+                    className="mt-1 block w-full bg-[#1B263B] border border-[#415A77] rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-[#778DA9] focus:border-[#778DA9]"
+                  />
+                  {avatarDataUrl && (
+                    <div className="mt-3 flex items-center gap-3">
+                      <img src={avatarDataUrl} alt="Preview" className="w-12 h-12 rounded-full object-cover border border-[#415A77]" />
+                      <span className="text-sm text-[#778DA9]">Preview</span>
+                    </div>
+                  )}
+                  <p className="mt-2 text-xs text-[#778DA9]">Only you can choose your photo. We don't auto-assign.</p>
+                </div>
               </>
             )}
 

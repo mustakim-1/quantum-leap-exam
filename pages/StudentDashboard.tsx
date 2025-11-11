@@ -8,6 +8,7 @@ import { Exam } from '../types';
 import ExamPage from './ExamPage';
 import ResultsPage from './ResultsPage';
 import ExamDetailsModal from '../components/ExamDetailsModal';
+import UniversalLeaderboard from '../components/UniversalLeaderboard';
 
 const StudentDashboard: React.FC = () => {
     const { user } = useAuth();
@@ -45,6 +46,12 @@ const StudentDashboard: React.FC = () => {
                 <Header />
                 <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <h2 className="text-3xl font-bold mb-6">Student Dashboard</h2>
+                    
+                    {/* Universal Leaderboard Section */}
+                    <div className="mb-8">
+                        <UniversalLeaderboard limit={10} />
+                    </div>
+
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <div className="lg:col-span-2">
                             <Card>

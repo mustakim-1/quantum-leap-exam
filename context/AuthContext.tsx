@@ -6,7 +6,7 @@ import { MOCK_USERS } from '../constants';
 interface AuthContextType {
   user: User | null;
   login: (email: string, password_insecure: string) => void;
-  register: (name: string, email: string, password_insecure: string, school: string, grade: string) => void;
+  register: (name: string, email: string, password_insecure: string, school: string, grade: string, avatar?: string) => void;
   logout: () => void;
 }
 
@@ -24,7 +24,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
-  const register = (name: string, email: string, password_insecure: string, school: string, grade: string) => {
+  const register = (name: string, email: string, password_insecure: string, school: string, grade: string, avatar?: string) => {
     if (!name.trim() || !email.trim() || !password_insecure.trim() || !school.trim() || !grade.trim()) {
         alert("All fields are required.");
         return;
@@ -42,7 +42,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         email,
         password_insecure,
         role: 'student',
-        avatar: `https://i.pravatar.cc/150?u=${email}`,
+        avatar: avatar || '',
         school,
         grade,
     };

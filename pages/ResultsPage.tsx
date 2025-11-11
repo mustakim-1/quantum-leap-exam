@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { getLeaderboardForExam } from '../constants';
+import { getLeaderboardForExam, MOCK_EXAMS } from '../constants';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import Confetti from '../components/Confetti';
@@ -13,6 +13,22 @@ interface ResultsPageProps {
 
 const ResultsPage: React.FC<ResultsPageProps> = ({ result, onBackToDashboard }) => {
     const leaderboard: LeaderboardEntry[] = useMemo(() => getLeaderboardForExam(result.examId), [result.examId]);
+    const exam = useMemo(() => MOCK_EXAMS.find(e => e.id === result.examId), [result.examId]);
+    const reviewItems = useMemo(() => {
+      if (!exam) return [];
+      return exam.questions.map((q, idx) => {
+        const selected = result.answers?.[idx];
+        const isCorrect = selected === q.correctAnswer;
+        return {
+          index: idx,
+          question: q.text,
+          options: q.options,
+          correctIndex: q.correctAnswer,
+          selectedIndex: selected,
+          isCorrect,
+        };
+      });
+    }, [exam, result.answers]);
 
     return (
     <>
@@ -40,6 +56,49 @@ const ResultsPage: React.FC<ResultsPageProps> = ({ result, onBackToDashboard }) 
                         ))}
                     </div>
                 </div>
+
+                {/* Answer Review Section */}
+                {exam && reviewItems.length > 0 && (
+                  <div className="mb-8 text-left">
+                    <h2 className="text-2xl font-bold mb-4">Answer Review</h2>
+                    <div className="space-y-4">
+                      {reviewItems.map(item => (
+                        <div
+                          key={item.index}
+                          className={`p-4 rounded-lg border ${item.isCorrect ? 'bg-green-900/20 border-green-600' : 'bg-red-900/20 border-red-600'}`}
+                        >
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="font-semibold">Q{item.index + 1}. {item.question}</p>
+                            <span className={`px-2 py-1 text-xs rounded ${item.isCorrect ? 'bg-green-700 text-white' : 'bg-red-700 text-white'}`}>
+                              {item.isCorrect ? 'Correct' : 'Wrong'}
+                            </span>
+                          </div>
+                          <div className="space-y-2">
+                            {item.options.map((opt, i) => {
+                              const isSelected = i === item.selectedIndex;
+                              const isRight = i === item.correctIndex;
+                              const base = 'p-3 rounded border';
+                              const selectedCls = isSelected ? ' border-blue-500 bg-blue-900/20' : ' border-gray-700 bg-gray-800/40';
+                              const rightCls = isRight ? ' ring-2 ring-green-500' : '';
+                              return (
+                                <div key={i} className={`${base}${selectedCls}${rightCls}`}>
+                                  <div className="flex items-center justify-between">
+                                    <span>{opt}</span>
+                                    <div className="flex items-center gap-2">
+                                      {isRight && <span className="text-green-400 text-sm">Correct Answer</span>}
+                                      {isSelected && !isRight && <span className="text-blue-400 text-sm">Your Choice</span>}
+                                      {isSelected && isRight && <span className="text-green-400 text-sm">Your Choice</span>}
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 <Button onClick={onBackToDashboard}>Back to Dashboard</Button>
             </Card>

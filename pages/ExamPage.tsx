@@ -148,6 +148,28 @@ const ExamPage: React.FC<ExamPageProps> = ({ exam, onFinish }) => {
                   </button>
                 ))}
               </div>
+              
+              <div className="flex justify-between mt-8">
+                <Button 
+                  onClick={() => setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1))}
+                  disabled={currentQuestionIndex === 0}
+                  className="px-6"
+                >
+                  ← Previous
+                </Button>
+                
+                <div className="text-center">
+                  <span className="text-gray-400">Question {currentQuestionIndex + 1} of {exam.questions.length}</span>
+                </div>
+                
+                <Button 
+                  onClick={() => setCurrentQuestionIndex(Math.min(exam.questions.length - 1, currentQuestionIndex + 1))}
+                  disabled={currentQuestionIndex === exam.questions.length - 1}
+                  className="px-6"
+                >
+                  Next →
+                </Button>
+              </div>
             </div>
           </div>
         </div>
